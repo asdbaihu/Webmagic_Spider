@@ -12,6 +12,7 @@ import us.codecraft.webmagic.proxy.SimpleProxyProvider;
 
 /***
  * 混播代理
+ * 每次供给100个ip和端口号
  */
 public class HunboProxy {
     private static String httpDownloadText(String url) {
