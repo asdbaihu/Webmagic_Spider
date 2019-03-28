@@ -37,7 +37,7 @@ public class Start {
             if (arg.equalsIgnoreCase("jianshu01")) {
                 spider = Spider.create(new JianShuProxyLinux01())
                         //简书01链接入口
-                        .addUrl("https://www.jianshu.com/p/98b709105a32?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation")
+                        .addUrl("https://www.jianshu.com/p/bc6f9b0523fe?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -50,7 +50,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu02")){
                 spider = Spider.create(new JianShuProxyLinux02())
                         //简书02链接入口
-                        .addUrl("https://www.jianshu.com/u/00c509af4d40?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
+                        .addUrl("https://www.jianshu.com/u/2b1aecf85f2f?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -63,7 +63,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu03")){
                 spider = Spider.create(new JianShuProxyLinux03())
                         //简书03链接入口
-                        .addUrl("https://www.jianshu.com/p/8509a54e0442?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation")
+                        .addUrl("https://www.jianshu.com/p/b0bdf1a74cee?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -76,7 +76,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu04")){
                 spider = Spider.create(new JianShuProxyLinux04())
                         //简书04链接入口
-                        .addUrl("https://www.jianshu.com/p/SvV3p4?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation")
+                        .addUrl("https://www.jianshu.com/p/4219abf4aaae?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
