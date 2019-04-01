@@ -55,6 +55,7 @@ public class ZhiHuTest implements PageProcessor {
 
         System.setProperty("selenuim_config", "D:\\develop\\code\\Demo\\src\\main\\resources\\selenium_test.properties");
         //System.setProperty("selenuim_config", "/shuju/jar/selenium.properties");
+        //System.setProperty("selenuim_config", "/shuju/jar/selenium.properties");
 
        // Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
