@@ -1,8 +1,10 @@
 package com.lenovo.test;
 
+import com.google.common.hash.BloomFilter;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.scheduler.*;
@@ -54,12 +56,18 @@ public class JianShuTest implements PageProcessor {
 
     public static void main(String[] args) {
 
+        BloomFilterDuplicateRemover Bloom=null;
+        Bloom.resetDuplicateCheck((Task) new FileCacheQueueScheduler(""));
+
+        BloomFilter<String> bloomFilter = new BloomFilter<>();
+
         Spider spider = Spider.create(new JianShuTest())
                 .addUrl("https://www.jianshu.com/u/378169543455?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
                 .addPipeline(new FilePipeline("D:\\jianshu"))
-                .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(10000)))
+                //.setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(10000)))
+                .setScheduler(new QueueScheduler().setDuplicateRemover(Bloom))
                 //.setScheduler(new RedisScheduler("127.0.0.1",6379))
-                .setScheduler(new FileCacheQueueScheduler("D:\\jianshu\\urlfile"))
+                //.setScheduler(new FileCacheQueueScheduler("D:\\jianshu\\urlfile"))
                 .thread(5);
         Scheduler scheduler = spider.getScheduler();
         spider.run();
