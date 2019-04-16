@@ -57,9 +57,9 @@ public class JianShuTest implements PageProcessor {
     public static void main(String[] args) {
 
         BloomFilterDuplicateRemover Bloom=null;
-        Bloom.resetDuplicateCheck((Task) new FileCacheQueueScheduler(""));
+        Bloom.resetDuplicateCheck((Task) new FileCacheQueueScheduler("D:\\jianshu\\urlfile"));
 
-        BloomFilter<String> bloomFilter = new BloomFilter<>();
+        //BloomFilter<String> bloomFilter = new BloomFilter<String>();
 
         Spider spider = Spider.create(new JianShuTest())
                 .addUrl("https://www.jianshu.com/u/378169543455?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
