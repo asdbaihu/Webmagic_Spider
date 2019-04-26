@@ -1,5 +1,6 @@
 package com.lenovo.main;
 
+import com.lenovo.common.FileCacheQueueScheduler;
 import com.lenovo.common.ProxyProvider;
 import com.lenovo.spider.jianshu.*;
 import com.lenovo.spider.weibo.WeiBoProxyLinux01;
@@ -14,7 +15,6 @@ import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.proxy.Proxy;
 import us.codecraft.webmagic.proxy.SimpleProxyProvider;
 import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
-import us.codecraft.webmagic.scheduler.FileCacheQueueScheduler;
 import us.codecraft.webmagic.scheduler.QueueScheduler;
 import us.codecraft.webmagic.scheduler.Scheduler;
 
@@ -35,7 +35,7 @@ public class Start {
             if (arg.equalsIgnoreCase("jianshu01")) {
                 spider = Spider.create(new JianShuProxyLinux01())
                         //简书01链接入口
-                        .addUrl("https://www.jianshu.com/p/6b2c6326f8f9")
+                        .addUrl("https://www.jianshu.com/p/11a302af4953")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -48,7 +48,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu02")){
                 spider = Spider.create(new JianShuProxyLinux02())
                         //简书02链接入口
-                        .addUrl("https://www.jianshu.com/u/5a85203390b7?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
+                        .addUrl("https://www.jianshu.com/u/09444a3b43e8?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -61,7 +61,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu03")){
                 spider = Spider.create(new JianShuProxyLinux03())
                         //简书03链接入口
-                        .addUrl("https://www.jianshu.com/p/7031752823e7")
+                        .addUrl("https://www.jianshu.com/p/3f0158ef63e0")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -75,7 +75,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux04())
 
                         //简书04链接入口
-                        .addUrl("https://www.jianshu.com/p/8325f1708d5b")
+                        .addUrl("https://www.jianshu.com/p/c3a71a8a25c3")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -89,7 +89,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux05())
 
                         //简书05链接入口
-                        .addUrl("https://www.jianshu.com/p/9d7e83d16bd7")
+                        .addUrl("https://www.jianshu.com/p/4b7d8f7976f3")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/data/dynamic_spider/jianshu"))
                         //设置布隆过滤器进行去重
@@ -103,7 +103,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux06())
 
                         //简书06链接入口
-                        .addUrl("https://www.jianshu.com/p/04fe5e952d28")
+                        .addUrl("https://www.jianshu.com/p/35da29395f3f")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/data/dynamic_spider/jianshu"))
                         //设置布隆过滤器进行去重
@@ -127,7 +127,8 @@ public class Start {
             }else if(arg.equalsIgnoreCase("weibo02")){
                 spider = Spider.create(new WeiBoProxyLinux02())
                         //.addUrl("http://blog.sina.com.cn/u/1224900857")
-                        .addUrl("http://blog.sina.com.cn/u/1255589934")
+                        //.addUrl("http://blog.sina.com.cn/u/1255589934")
+                        .addUrl("http://blog.sina.com.cn/u/1945326343")
                         .addPipeline(new FilePipeline("/home/shuju/weibo"))
                         .setScheduler(new QueueScheduler().setDuplicateRemover(
                                 new BloomFilterDuplicateRemover(10000)))
@@ -165,7 +166,7 @@ public class Start {
             //嗅事百科爬虫
             else if(arg.equalsIgnoreCase("xiushi01")){
                 spider = Spider.create(new XiuShiProxyLinux())
-                        .addUrl("https://www.qiushibaike.com/users/35034589/")
+                        .addUrl("https://www.qiushibaike.com/users/36787837/")
                         .addPipeline(new FilePipeline("/home/static_spider/xiushi"))
                         .setScheduler(new QueueScheduler().setDuplicateRemover(
                                 new BloomFilterDuplicateRemover(10000)))

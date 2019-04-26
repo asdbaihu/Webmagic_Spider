@@ -1,20 +1,21 @@
 package com.lenovo.test;
 
-import com.google.common.hash.BloomFilter;
 import com.lenovo.common.SpikeFileCacheQueueScheduler;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.scheduler.*;
+import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
+import us.codecraft.webmagic.scheduler.FileCacheQueueScheduler;
+import us.codecraft.webmagic.scheduler.QueueScheduler;
+import us.codecraft.webmagic.scheduler.Scheduler;
 import us.codecraft.webmagic.selector.Selectable;
 
 /**
  *ºÚ È≤‚ ‘
  */
-public class JianShuTest implements PageProcessor {
+public class JianShuTest02 implements PageProcessor {
 
     public static final String URL_LIST = "https://www.jianshu.com/u/\\w+\\?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation";
     public static final String URL_POST = "https://www.jianshu.com/p/\\w+";
@@ -57,16 +58,12 @@ public class JianShuTest implements PageProcessor {
 
     public static void main(String[] args) {
 
-        SpikeFileCacheQueueScheduler file=new SpikeFileCacheQueueScheduler("D:\\jianshu\\urlfile");
-        file.setRegx(URL_LIST);
-        file.setRegx(URL_POST);
-
-        Spider spider = Spider.create(new JianShuTest())
+        Spider spider = Spider.create(new JianShuTest02())
                 .addUrl("https://www.jianshu.com/u/378169543455?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
                 .addPipeline(new FilePipeline("D:\\jianshu"))
                 .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(10000)))
                 //.setScheduler(new RedisScheduler("127.0.0.1",6379))
-                .setScheduler(file)
+                .setScheduler(new FileCacheQueueScheduler("D:\\jianshu\\urlfile"))
                 .thread(20);
         Scheduler scheduler = spider.getScheduler();
         spider.run();

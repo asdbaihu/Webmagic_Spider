@@ -1,40 +1,38 @@
 package com.lenovo.test;
 
-import com.google.common.hash.BloomFilter;
-import com.lenovo.common.SpikeFileCacheQueueScheduler;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.scheduler.*;
+import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
+import us.codecraft.webmagic.scheduler.FileCacheQueueScheduler;
+import us.codecraft.webmagic.scheduler.QueueScheduler;
+import us.codecraft.webmagic.scheduler.Scheduler;
 import us.codecraft.webmagic.selector.Selectable;
 
 /**
  *ºÚ È≤‚ ‘
  */
-public class JianShuTest implements PageProcessor {
+public class JianShuApp implements PageProcessor {
 
-    public static final String URL_LIST = "https://www.jianshu.com/u/\\w+\\?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation";
-    public static final String URL_POST = "https://www.jianshu.com/p/\\w+";
+    //public static final String URL_LIST = "https://www.jianshu.com/u/\\w+\\?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation";
+    public static final String URL_POST = "https://s0.jianshuapi.com/v3/notes/\\d+\\?read_mode=day&font_size=normal";
 
     private Site site = Site
             .me()
             .setDomain("jianshuTest.com")
             .setUseGzip(true)
-            .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8")
-            .addHeader("Accept-Language", "zh-CN,zh;q=0.9")
-            .addHeader("Cache-Control", "max-age=0")
-            .addHeader("Upgrade-Insecure-Requests", "1")
+            .addHeader("Content-Type", "application/json")
+            .addHeader("Connection", "Keep-Alive")
             .setSleepTime(3000)
             .setUserAgent(
-                    "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.81 Safari/537.36");
+                    "Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4 MIUI/V10.2.1.0.MBFCNXM) okhttp/3.3.0 haruki/4.9.1");
 
     @Override
     public void process(Page page) {
         Selectable selectUrl = page.getUrl();
-        page.addTargetRequests(page.getHtml().links().regex(URL_LIST).all());
+        //page.addTargetRequests(page.getHtml().links().regex(URL_LIST).all());
         //≤©øÕ¡¥Ω”
 //        if(selectUrl.regex(URL_LIST).match()){
         page.addTargetRequests(page.getHtml().links().regex(URL_POST).all());
@@ -57,17 +55,13 @@ public class JianShuTest implements PageProcessor {
 
     public static void main(String[] args) {
 
-        SpikeFileCacheQueueScheduler file=new SpikeFileCacheQueueScheduler("D:\\jianshu\\urlfile");
-        file.setRegx(URL_LIST);
-        file.setRegx(URL_POST);
-
-        Spider spider = Spider.create(new JianShuTest())
-                .addUrl("https://www.jianshu.com/u/378169543455?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
+        Spider spider = Spider.create(new JianShuApp())
+                .addUrl("https://s0.jianshuapi.com/v3/notes/45577694?read_mode=day&font_size=normal")
                 .addPipeline(new FilePipeline("D:\\jianshu"))
                 .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(10000)))
                 //.setScheduler(new RedisScheduler("127.0.0.1",6379))
-                .setScheduler(file)
-                .thread(20);
+                .setScheduler(new FileCacheQueueScheduler("D:\\jianshu\\urlfile"))
+                .thread(5);
         Scheduler scheduler = spider.getScheduler();
         spider.run();
     }
