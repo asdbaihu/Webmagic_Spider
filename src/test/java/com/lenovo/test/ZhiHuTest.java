@@ -73,7 +73,7 @@ public class ZhiHuTest implements PageProcessor {
                 .setScheduler(new FileCacheQueueScheduler("D:\\jianshu\\urlfile"))
                 //.setScheduler(new FileCacheQueueScheduler("/data/dynamic_spider/zhihu/urlfile"))
                  .setDownloader(httpClientDownloader)
-                //.setDownloader(new SeleniumDownloader("E:\\chromedriver_win32\\chromedriver.exe").setSleepTime(1000))
+                //.setDownloader(new SeleniumDownloader02("E:\\chromedriver_win32\\chromedriver.exe").setSleepTime(1000))
                 .setDownloader(new SeleniumDownloader())
                 .thread(5);
 
