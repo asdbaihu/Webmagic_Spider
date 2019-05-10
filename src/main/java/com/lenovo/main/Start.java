@@ -35,7 +35,7 @@ public class Start {
             if (arg.equalsIgnoreCase("jianshu01")) {
                 spider = Spider.create(new JianShuProxyLinux01())
                         //简书01链接入口
-                        .addUrl("https://www.jianshu.com/p/f847341e26b5")
+                        .addUrl("https://www.jianshu.com/p/a300263da6e0")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -48,7 +48,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu02")){
                 spider = Spider.create(new JianShuProxyLinux02())
                         //简书02链接入口
-                        .addUrl("https://www.jianshu.com/u/5ac0324bb867?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
+                        .addUrl("https://www.jianshu.com/p/0745c830dd69")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -61,7 +61,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu03")){
                 spider = Spider.create(new JianShuProxyLinux03())
                         //简书03链接入口
-                        .addUrl("https://www.jianshu.com/p/0acfe9a497bc")
+                        .addUrl("https://www.jianshu.com/p/ca974f668f1d")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -75,7 +75,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux04())
 
                         //简书04链接入口
-                        .addUrl("https://www.jianshu.com/p/60379e52fb90")
+                        .addUrl("https://www.jianshu.com/p/4c42b0faea4c")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -89,7 +89,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux05())
 
                         //简书05链接入口
-                        .addUrl("https://www.jianshu.com/p/0e1c9719ccc4")
+                        .addUrl("https://www.jianshu.com/p/ebd75f743916")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/data/dynamic_spider/jianshu"))
                         //设置布隆过滤器进行去重
@@ -103,7 +103,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux06())
 
                         //简书06链接入口
-                        .addUrl("https://www.jianshu.com/p/abb81be24e18")
+                        .addUrl("https://www.jianshu.com/p/15c698bee322")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/data/dynamic_spider/jianshu"))
                         //设置布隆过滤器进行去重
@@ -128,7 +128,8 @@ public class Start {
                 spider = Spider.create(new WeiBoProxyLinux02())
                         //.addUrl("http://blog.sina.com.cn/u/1224900857")
                         //.addUrl("http://blog.sina.com.cn/u/1255589934")
-                        .addUrl("http://blog.sina.com.cn/u/1945326343")
+                        //.addUrl("http://blog.sina.com.cn/u/1945326343")
+                        .addUrl("http://blog.sina.com.cn/u/5892736543")
                         .addPipeline(new FilePipeline("/home/shuju/weibo"))
                         .setScheduler(new QueueScheduler().setDuplicateRemover(
                                 new BloomFilterDuplicateRemover(10000)))
@@ -166,7 +167,7 @@ public class Start {
             //嗅事百科爬虫
             else if(arg.equalsIgnoreCase("xiushi01")){
                 spider = Spider.create(new XiuShiProxyLinux())
-                        .addUrl("https://www.qiushibaike.com/users/35225229/")
+                        .addUrl("https://www.qiushibaike.com/users/38840423/")
                         .addPipeline(new FilePipeline("/home/static_spider/xiushi"))
                         .setScheduler(new QueueScheduler().setDuplicateRemover(
                                 new BloomFilterDuplicateRemover(10000)))
