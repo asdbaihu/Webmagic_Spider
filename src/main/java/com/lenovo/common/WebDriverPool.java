@@ -24,7 +24,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  * @data 2019/4/29 12:24
  */
 
-class WebDriverPool {
+public class WebDriverPool {
     private Logger logger;
     private static final int DEFAULT_CAPACITY = 5;
     private final int capacity;

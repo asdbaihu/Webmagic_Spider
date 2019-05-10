@@ -1,6 +1,9 @@
 package com.lenovo.test;
 
+import com.lenovo.common.FileCacheQueueScheduler;
 import com.lenovo.common.SeleniumDownloader;
+import com.lenovo.common.TestAction;
+import com.lenovo.common.WebDriverPool;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -10,7 +13,6 @@ import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.proxy.Proxy;
 import us.codecraft.webmagic.proxy.SimpleProxyProvider;
 import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
-import us.codecraft.webmagic.scheduler.FileCacheQueueScheduler;
 import us.codecraft.webmagic.scheduler.QueueScheduler;
 import us.codecraft.webmagic.scheduler.Scheduler;
 import us.codecraft.webmagic.selector.Selectable;
@@ -23,8 +25,10 @@ import java.util.List;
  */
 public class AiQiYiTest implements PageProcessor {
 
+
     public static final String URL_LIST = "https://list.iqiyi.com/www/1/-------------24-\\d+\\-1-iqiyi--.html";
     public static final String URL_POST = "https://www.iqiyi.com/v_\\w+\\.html";
+
 
     private Site site = Site
             .me()
@@ -81,7 +85,17 @@ public class AiQiYiTest implements PageProcessor {
             page.putField("地区", page.getHtml().xpath("//*[@id=\"block-L\"]/div[2]/div[1]/ul/li[3]/span/tidyText()"));
             page.putField("类型", page.getHtml().xpath("//*[@id=\"block-L\"]/div[2]/div[1]/ul/li[4]/span/tidyText()"));
             page.putField("首映", page.getHtml().xpath("//*[@id=\"block-L\"]/div[2]/div[1]/ul/li[5]/span/tidyText()"));
-            page.putField("主演", page.getHtml().xpath("//*[@id=\"block-L\"]/div[2]/div[2]/span[2]/span[1]/allText()"));
+            //page.putField("主演", page.getHtml().xpath("//*[@id=\"block-L\"]/div[2]/div[2]/span[2]/span[1]/tidyText()"));
+            page.putField("主演", page.getHtml().xpath("//*[@id=\"block-F\"]/div[1]/ul/li[2]/div/div[2]/h3/a[1]/tidyText()"));
+            //*[@id="comment"]/div[1]/div/div[2]/div[1]/div/div/ul/li[2]/div[2]/p/span
+            //*[@id="comment"]/div[1]/div/div[2]/div[1]/div/div/ul/li[2]/div[2]/p/span
+
+            List<String> itemlist = page.getHtml().links().regex(URL_POST).all();
+            if(!itemlist.isEmpty()) {
+                for (String item : itemlist) {
+                    page.addTargetRequests(Collections.singletonList(item));
+                }
+            }
         }
     }
 
@@ -104,7 +118,8 @@ public class AiQiYiTest implements PageProcessor {
                 ));
 
         Spider spider = Spider.create(new AiQiYiTest())
-                .addUrl("https://list.iqiyi.com/www/1/-------------24-1-1-iqiyi--.html")
+                //.addUrl("https://list.iqiyi.com/www/1/-------------24-1-1-iqiyi--.html")
+                .addUrl("https://list.iqiyi.com/www/1/-------------24-4-1-iqiyi--.html")
                 .addPipeline(new FilePipeline("D:\\jianshu"))
                 //.addPipeline(new FilePipeline("/data/dynamic_spider/zhihu"))
                 .setScheduler(new QueueScheduler().setDuplicateRemover(
@@ -113,6 +128,7 @@ public class AiQiYiTest implements PageProcessor {
                 //.setScheduler(new FileCacheQueueScheduler("/data/dynamic_spider/zhihu/urlfile"))
                  .setDownloader(httpClientDownloader)
                 //.setDownloader(new SeleniumDownloader02("E:\\chromedriver_win32\\chromedriver.exe").setSleepTime(1000))
+                //.setDownloader(new SeleniumDownloader(5000,new WebDriverPool(),new TestAction()))
                 .setDownloader(new SeleniumDownloader())
                 .thread(5);
 

@@ -6,7 +6,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
 /**
- *ºÚ È04
+ *ºÚ È05
  */
 public class JianShuProxyLinux05 implements PageProcessor {
 

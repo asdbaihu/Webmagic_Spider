@@ -95,20 +95,20 @@ public class SeleniumDownloader implements Downloader, Closeable {
             reqAction.execute(webDriver);
         }
 
-//        String js = "";
-//        for (int i=0; i < 5; i++){
-//            System.out.println("休眠1s");
-//            try {
-//                //滚动到最底部
-//                ((JavascriptExecutor)webDriver).executeScript("window.scrollTo(0,document.body.scrollHeight)");
-//                //休眠，等待加载页面
-//                Thread.sleep(2000);
-//                //往回滚一点，否则不加载
-//                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,-300)");
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        String js = "";
+        for (int i=0; i < 2; i++){
+            System.out.println("休眠1s");
+            try {
+                //滚动到最底部
+                ((JavascriptExecutor)webDriver).executeScript("window.scrollTo(0,document.body.scrollHeight)");
+                //休眠，等待加载页面
+                Thread.sleep(2000);
+                //往回滚一点，否则不加载
+                ((JavascriptExecutor)webDriver).executeScript("window.scrollBy(0,-300)");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
 //        Actions action = new Actions(webDriver);
 ////        WebElement element = webDriver.findElement(By.xpath("//*[@id=\"block-D\"]/div/span[12]"));
