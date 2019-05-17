@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/common/SeleniumDownloader.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/common/SeleniumDownloader02.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/main/Start.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/aiqiyi/Movie.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/aiqiyi/Teleplay.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/tengxun/Move.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/tengxun/TeleplayUrl.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/config.ini" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/config02.ini" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/lenovo/test/AiQiYiTest.java" charset="GBK" />
   </component>
 </project>

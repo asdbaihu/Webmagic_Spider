@@ -35,7 +35,7 @@ public class Start {
             if (arg.equalsIgnoreCase("jianshu01")) {
                 spider = Spider.create(new JianShuProxyLinux01())
                         //简书01链接入口
-                        .addUrl("https://www.jianshu.com/p/a300263da6e0")
+                        .addUrl("https://www.jianshu.com/p/1804d4507fbe")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -48,7 +48,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu02")){
                 spider = Spider.create(new JianShuProxyLinux02())
                         //简书02链接入口
-                        .addUrl("https://www.jianshu.com/p/0745c830dd69")
+                        .addUrl("https://www.jianshu.com/p/3b37d010f0f8")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -61,7 +61,7 @@ public class Start {
             }else if(arg.equalsIgnoreCase("jianshu03")){
                 spider = Spider.create(new JianShuProxyLinux03())
                         //简书03链接入口
-                        .addUrl("https://www.jianshu.com/p/ca974f668f1d")
+                        .addUrl("https://www.jianshu.com/p/a780114c5d7c")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -75,7 +75,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux04())
 
                         //简书04链接入口
-                        .addUrl("https://www.jianshu.com/p/4c42b0faea4c")
+                        .addUrl("https://www.jianshu.com/p/c459b109d973")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/home/shuju/jianshu"))
                         //设置布隆过滤器进行去重
@@ -89,7 +89,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux05())
 
                         //简书05链接入口
-                        .addUrl("https://www.jianshu.com/p/ebd75f743916")
+                        .addUrl("https://www.jianshu.com/p/8cfedba1affe")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/data/dynamic_spider/jianshu"))
                         //设置布隆过滤器进行去重
@@ -103,7 +103,7 @@ public class Start {
                 spider = Spider.create(new JianShuProxyLinux06())
 
                         //简书06链接入口
-                        .addUrl("https://www.jianshu.com/p/15c698bee322")
+                        .addUrl("https://www.jianshu.com/p/6d5fff029a68")
                         //文件存储路径
                         .addPipeline(new FilePipeline("/data/dynamic_spider/jianshu"))
                         //设置布隆过滤器进行去重
@@ -129,7 +129,8 @@ public class Start {
                         //.addUrl("http://blog.sina.com.cn/u/1224900857")
                         //.addUrl("http://blog.sina.com.cn/u/1255589934")
                         //.addUrl("http://blog.sina.com.cn/u/1945326343")
-                        .addUrl("http://blog.sina.com.cn/u/5892736543")
+                        //.addUrl("http://blog.sina.com.cn/u/5892736543")
+                        .addUrl("http://blog.sina.com.cn/u/1686546714")
                         .addPipeline(new FilePipeline("/home/shuju/weibo"))
                         .setScheduler(new QueueScheduler().setDuplicateRemover(
                                 new BloomFilterDuplicateRemover(10000)))
@@ -167,7 +168,7 @@ public class Start {
             //嗅事百科爬虫
             else if(arg.equalsIgnoreCase("xiushi01")){
                 spider = Spider.create(new XiuShiProxyLinux())
-                        .addUrl("https://www.qiushibaike.com/users/38840423/")
+                        .addUrl("https://www.qiushibaike.com/users/20053149/")
                         .addPipeline(new FilePipeline("/home/static_spider/xiushi"))
                         .setScheduler(new QueueScheduler().setDuplicateRemover(
                                 new BloomFilterDuplicateRemover(10000)))

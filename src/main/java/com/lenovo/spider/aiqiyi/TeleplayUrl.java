@@ -1,36 +1,32 @@
 package com.lenovo.spider.aiqiyi;
 
-import com.lenovo.common.FileCacheQueueScheduler;
 import com.lenovo.common.ProxyProvider;
-import com.lenovo.common.SeleniumDownloader;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.downloader.HttpClientDownloader;
 import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.proxy.Proxy;
-import us.codecraft.webmagic.proxy.SimpleProxyProvider;
 import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
+import us.codecraft.webmagic.scheduler.FileCacheQueueScheduler;
 import us.codecraft.webmagic.scheduler.QueueScheduler;
 import us.codecraft.webmagic.scheduler.Scheduler;
-import us.codecraft.webmagic.selector.JsonPathSelector;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.Collections;
 import java.util.List;
 
 /**
- *爱奇艺电影资料抓取
+ *爱奇艺电视剧url资料抓取
  */
-public class Move implements PageProcessor {
+public class TeleplayUrl implements PageProcessor {
 
-    public static final String URL_LIST = "https://list.iqiyi.com/www/1/-------------24-\\d+\\-1-iqiyi--.html";
-    public static final String URL_POST = "https://www.iqiyi.com/v_\\w+\\.html";
+    public static final String URL_LIST = "https://list.iqiyi.com/www/2/-------------24-\\d+\\-1-iqiyi--.html";
+    public static final String URL_POST = "https://www.iqiyi.com/a_\\w+\\.html";
 
     private Site site = Site
             .me()
-            .setDomain("www.iqiyi.move.com")
+            .setDomain("www.iqiyi.teleplay19.com")
             .setUseGzip(true)
             .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8")
             .addHeader("Accept-Language", "zh-CN,zh;q=0.9")
@@ -66,7 +62,7 @@ public class Move implements PageProcessor {
             page.putField("导演", page.getHtml().css("#block-L > div.qy-play-side-introduction.vInfoSide_vNCon > div.vInfoSide_cTop > ul > li:nth-child(2) > span > a","title"));
             page.putField("主演", page.getHtml().css("#comment > div.qy-comment-page > div > div.qycp-bd > div.csPpCircle_relatedWrap > div > div > ul > li:nth-child(2) > div.related_item_tit > p > span","text"));
             page.putField("主演2", page.getHtml().css("#block-L > div.qy-play-side-introduction.vInfoSide_vNCon > div.vInfoSide_startBox.vInfoSide_startBox.start_name_pr > div > div > div.start_cardInner > div.start_cardT > p > a","title"));
-           // page.putField("主演", page.getHtml().css("#block-C > div.qy-player-detail-pop > div.qy-player-intro-pop > div.intro-right > ul > li:nth-child(2) > span > span:nth-child(1) > a","title"));
+            // page.putField("主演", page.getHtml().css("#block-C > div.qy-player-detail-pop > div.qy-player-intro-pop > div.intro-right > ul > li:nth-child(2) > span > span:nth-child(1) > a","title"));
             page.putField("演员", page.getHtml().css("#comment > div.qy-comment-page > div > div.qycp-bd > div.csPpCircle_relatedWrap > div > div > ul > li:nth-child(3) > div.related_item_tit > p > span","text"));
             page.putField("简介", page.getHtml().css("#block-F > div.qy-play-role-tab.j_people_wrap > ul > li.role-item.j_people_item.selected > div > div.role-con > h3 > a","title"));
             page.putField("热度", page.getHtml().css("#block-F > div.qy-play-role-tab.j_people_wrap > ul > li.role-item.j_people_item.selected > div > div.role-con > h3 > a","title"));
@@ -74,9 +70,6 @@ public class Move implements PageProcessor {
             page.putField("评分", page.getHtml().css("#block-C > div.qy-player-detail > div > div > div > div > div.qy-player-title.title-score > article > div.score-top > span.score-new","text"));
             page.putField("地区", page.getHtml().css("#block-L > div.qy-play-side-introduction.vInfoSide_vNCon > div.vInfoSide_cTop > ul > li:nth-child(3) > span > a","title"));
 
-            String s = new JsonPathSelector("$..description").select(page.getRawText());
-            page.putField("content", s);
-           // page.putField("content", page.getJson().removePadding("callback").jsonPath("$..data.description"));
 
             //将文章页链接加入到集合中
             List<String> itemlist = page.getHtml().links().regex(URL_POST).all();
@@ -95,22 +88,20 @@ public class Move implements PageProcessor {
 
     public static void main(String[] args) {
 
-        System.setProperty("selenuim_config", "D:\\develop\\code\\Demo\\src\\main\\resources\\selenium_test.properties");
-
-        //动态代理方法调用
         ProxyProvider httpClientDownloader = new ProxyProvider();
         HttpClientDownloader downloaderAndProxy = httpClientDownloader.createDownloaderAndProxy();
 
-        Spider spider = Spider.create(new Move())
-                .addUrl("https://list.iqiyi.com/www/1/-------------24-4-1-iqiyi--.html")
-                .addPipeline(new FilePipeline("D:\\jianshu"))
+        Spider spider = Spider.create(new TeleplayUrl())
+                .addUrl("https://list.iqiyi.com/www/2/-------------24-19-1-iqiyi--.html")
+                //文件存储路径
+                .addPipeline(new FilePipeline("D:\\data"))
+                //设置布隆过滤器进行去重
                 .setScheduler(new QueueScheduler().setDuplicateRemover(
                         new BloomFilterDuplicateRemover(10000)))
-                .setScheduler(new FileCacheQueueScheduler("D:\\jianshu\\urlfile"))
-                 .setDownloader(downloaderAndProxy)
-                .setDownloader(new SeleniumDownloader())
-                .thread(1);
-
+                //url缓存路径
+                .setScheduler(new FileCacheQueueScheduler("D:\\data\\urlfile"))
+                .setDownloader(downloaderAndProxy)
+                .thread(10);
         Scheduler scheduler = spider.getScheduler();
         spider.run();
     }
