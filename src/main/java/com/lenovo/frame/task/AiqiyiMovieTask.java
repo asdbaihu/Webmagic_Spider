@@ -25,10 +25,10 @@ import java.util.List;
  * @description 利用WebMagic进行数据爬取
  */
 @Component
-public class CrawlerTask implements PageProcessor {
+public class AiqiyiMovieTask implements PageProcessor {
 
     @Autowired
-    private CrawlerPipeline CrawlerPipeline;
+    private AiqiyiMoviePipeline CrawlerPipeline;
 
     public static final String URL_LIST = "https://list.iqiyi.com/www/1/-------------24-\\d+\\-1-iqiyi--.html";
     public static final String URL_POST = "https://www.iqiyi.com/v_\\w+\\.html";
@@ -89,8 +89,10 @@ public class CrawlerTask implements PageProcessor {
         //Integer time = Integer.valueOf(html.xpath("//*[@id=\"block-L\"]/div[2]/div[1]/ul/li[5]/span/tidyText()").get());
         String director = html.css("#block-L > div.qy-play-side-introduction.vInfoSide_vNCon > div.vInfoSide_cTop > ul > li:nth-child(2) > span > a", "title").toString();
         String atlr = html.css("#comment > div.qy-comment-page > div > div.qycp-bd > div.csPpCircle_relatedWrap > div > div > ul > li:nth-child(2) > div.related_item_tit > p > span", "text").toString();
-        String actor = html.css("#comment > div.qy-comment-page > div > div.qycp-bd > div.csPpCircle_relatedWrap > div > div > ul > li:nth-child(3) > div.related_item_tit > p > span", "text").toString();
-        String introduction = html.css("#block-F > div.qy-play-role-tab.j_people_wrap > ul > li.role-item.j_people_item.selected > div > div.role-con > h3 > a", "title").toString();
+        //String actor = html.css("#comment > div.qy-comment-page > div > div.qycp-bd > div.csPpCircle_relatedWrap > div > div > ul > li:nth-child(3) > div.related_item_tit > p > span", "text").toString();
+        String actor = html.css("#block-C > div.qy-player-detail-pop > div.qy-player-intro-pop > div.intro-right > ul > li:nth-child(2) > span > span:nth-child(1) > a", "text").toString();
+        //String introduction = html.css("#block-F > div.qy-play-role-tab.j_people_wrap > ul > li.role-item.j_people_item.selected > div > div.role-con > h3 > a", "title").toString();
+        String introduction = html.xpath("//*[@id=\"block-L\"]/div[2]/div[3]/div/div[1]/text()").toString();
         String ptyurl = page.getUrl().toString();
 
         //对象赋值
@@ -127,7 +129,7 @@ public class CrawlerTask implements PageProcessor {
 
         String url="https://list.iqiyi.com/www/1/-------------24-4-1-iqiyi--.html";
 
-         Spider.create(new CrawlerTask())
+         Spider.create(new AiqiyiMovieTask())
                 .addUrl(url)
                 .addPipeline(CrawlerPipeline)
                 .setScheduler(new QueueScheduler().setDuplicateRemover(

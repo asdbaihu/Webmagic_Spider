@@ -7,7 +7,7 @@ import com.lenovo.frame.domain.AiqiyiMovie;
  * @data 2019/5/16 13:59
  * @description 爬虫业务层接口
  */
-public interface CrawlerService {
+public interface AiqiyiMovieService {
 
     void save(AiqiyiMovie aiqiyiMovie);
 }

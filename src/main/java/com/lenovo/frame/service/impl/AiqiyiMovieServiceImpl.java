@@ -1,8 +1,8 @@
 package com.lenovo.frame.service.impl;
 
-import com.lenovo.frame.dao.CrawlerDao;
+import com.lenovo.frame.dao.AiqiyiMovieDao;
 import com.lenovo.frame.domain.AiqiyiMovie;
-import com.lenovo.frame.service.CrawlerService;
+import com.lenovo.frame.service.AiqiyiMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
  * @description 爬虫业务层实现类
  */
 @Service
-public class CrawlerServiceImpl implements CrawlerService {
+public class AiqiyiMovieServiceImpl implements AiqiyiMovieService {
 
     @Autowired
-    private CrawlerDao CrawlerDao;
+    private AiqiyiMovieDao aiqiyiMovieDao;
 
     @Override
     public void save(AiqiyiMovie aiqiyiMovie) {
-        CrawlerDao.save(aiqiyiMovie);
+        aiqiyiMovieDao.save(aiqiyiMovie);
     }
 }

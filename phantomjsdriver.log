@@ -8403,3 +8403,12 @@ m call stack size exceeded.
 [ERROR - 2019-05-16T10:25:48.855Z] Session [f7ddbbb0-77c4-11e9-ba9e-a1efc16e70f1] - page.onError - msg: TypeError: null is not an object (evaluating '= img.onabort = null')
 [ERROR - 2019-05-16T10:25:48.855Z] Session [f7ddbbb0-77c4-11e9-ba9e-a1efc16e70f1] - page.onError - stack:
   onabort (https://list.iqiyi.com/www/1/-------------24-4-1-iqiyi--.html:2185)
+[INFO  - 2019-05-22T09:54:07.209Z] GhostDriver - Main - running on port 9418
+[INFO  - 2019-05-22T09:54:08.068Z] Session [8aa67cf0-7c77-11e9-9b5f-13af68efbda9] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":false}
+[INFO  - 2019-05-22T09:54:08.068Z] Session [8aa67cf0-7c77-11e9-9b5f-13af68efbda9] - page.customHeaders:  - {}
+[INFO  - 2019-05-22T09:54:08.068Z] Session [8aa67cf0-7c77-11e9-9b5f-13af68efbda9] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":false,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2019-05-22T09:54:08.068Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 8aa67cf0-7c77-11e9-9b5f-13af68efbda9
+[ERROR - 2019-05-22T09:54:12.280Z] Session [8aa67cf0-7c77-11e9-9b5f-13af68efbda9] - page.onError - msg: TypeError: null is not an object (evaluating '= img.onabort = null')
+[ERROR - 2019-05-22T09:54:12.280Z] Session [8aa67cf0-7c77-11e9-9b5f-13af68efbda9] - page.onError - stack:
+  onabort (https://list.iqiyi.com/www/1/-------------24-4-1-iqiyi--.html:2185)
+[INFO  - 2019-05-22T09:57:28.400Z] ShutdownReqHand - _handle - About to shutdown

@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @data 2019/5/16 11:01
  * @description 爬虫持久层接口
  */
-public interface CrawlerDao extends JpaRepository<AiqiyiMovie,Long> {
+public interface AiqiyiMovieDao extends JpaRepository<AiqiyiMovie,Long> {
 }
