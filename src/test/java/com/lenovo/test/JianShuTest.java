@@ -12,7 +12,7 @@ import us.codecraft.webmagic.scheduler.*;
 import us.codecraft.webmagic.selector.Selectable;
 
 /**
- *¼òÊé²âÊÔ
+ *ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class JianShuTest implements PageProcessor {
 
@@ -33,22 +33,9 @@ public class JianShuTest implements PageProcessor {
 
     @Override
     public void process(Page page) {
-        Selectable selectUrl = page.getUrl();
-        page.addTargetRequests(page.getHtml().links().regex(URL_LIST).all());
-        //²©¿ÍÁ´½Ó
-//        if(selectUrl.regex(URL_LIST).match()){
-        page.addTargetRequests(page.getHtml().links().regex(URL_POST).all());
-        //}
-        //ÎÄÕÂÒ³
-         if(selectUrl.regex(URL_POST).match()) {
-            page.putField("", page.getHtml().xpath("//div[@class='article']//div[@class='show-content']/tidyText()"));
-        }
-
-//        else if (page.getHtml().links().regex(URL_LIST).smartContent() == null){
-//            //ÉèÖÃskipÖ®ºó£¬Õâ¸öÒ³ÃæµÄ½á¹û²»»á±»Pipeline´¦Àí
-//            page.setSkip(true);
-//        }
-    }
+        Selectable selectable = page.getHtml().xpath("//*[@id=\"mod-singerlist\"]/ul/li[1]/a");
+        System.out.println();
+     }
 
     @Override
     public Site getSite() {
@@ -62,7 +49,7 @@ public class JianShuTest implements PageProcessor {
         file.setRegx(URL_POST);
 
         Spider spider = Spider.create(new JianShuTest())
-                .addUrl("https://www.jianshu.com/u/378169543455?utm_campaign=maleskine&utm_content=user&utm_medium=seo_notes&utm_source=recommendation")
+                .addUrl("https://y.qq.com/portal/singer_list.html")
                 .addPipeline(new FilePipeline("D:\\jianshu"))
                 .setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(10000)))
                 //.setScheduler(new RedisScheduler("127.0.0.1",6379))

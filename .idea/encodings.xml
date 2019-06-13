@@ -7,10 +7,14 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/main/Start.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/aiqiyi/Movie.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/aiqiyi/Teleplay.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/jianshu/JianShuProxyLinux06.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/jianshu/JianShuProxyLinux07.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/qqmusic/qqmusic.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/tengxun/Move.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/lenovo/spider/tengxun/TeleplayUrl.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/config.ini" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/config02.ini" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/lenovo/test/AiQiYiTest.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/lenovo/test/Movie.java" charset="GBK" />
   </component>
 </project>
